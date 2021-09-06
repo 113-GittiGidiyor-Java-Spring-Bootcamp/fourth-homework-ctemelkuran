@@ -1,6 +1,7 @@
 package dev.patika.patikahw04.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.patika.patikahw04.entity.Course;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +34,7 @@ public class StudentDTO {
 
     @ApiModelProperty(example = "Male or Female")
     private String gender;
+
+    private List<Course> studentCourses;
 
 }
