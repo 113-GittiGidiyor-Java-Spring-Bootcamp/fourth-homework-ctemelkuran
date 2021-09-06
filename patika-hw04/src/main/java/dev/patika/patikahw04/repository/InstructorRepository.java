@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface InstructorRepository extends CrudRepository<Instructor, Long> {
+    boolean existsInstructorByPhoneNumber(String phoneNumber);
 
 }
