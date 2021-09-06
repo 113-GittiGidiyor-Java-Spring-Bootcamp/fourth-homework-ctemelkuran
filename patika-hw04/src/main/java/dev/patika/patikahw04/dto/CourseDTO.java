@@ -17,7 +17,7 @@ public class CourseDTO {
     private long id;
 
     @ApiModelProperty(example = "CS50")
-    @NotBlank(message = "Course code is mandatory")
+    @NotBlank(message = "Course Code is mandatory")
     private String courseCode;
 
     @ApiModelProperty(example = "Introduction to Computer Science")

@@ -22,7 +22,7 @@ public class CourseService {
 
     @Transactional
     public Optional<Course> saveCourse(CourseDTO courseDTO) {
-
+        // received data can be checked in the method
         // check if the course with the given courseCode exists
         boolean isCourseCodeExists = courseRepository.selectExistsCourseCode(courseDTO.getCourseCode());
 

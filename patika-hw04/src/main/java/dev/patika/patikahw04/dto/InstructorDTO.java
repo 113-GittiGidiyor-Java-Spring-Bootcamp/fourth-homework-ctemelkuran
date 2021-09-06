@@ -19,7 +19,7 @@ public class InstructorDTO {
     private long id;
 
     @ApiModelProperty(example = "Ford Prefect")
-    @NotBlank(message = "Course code is mandatory")
+    @NotBlank(message = "Instructor name is mandatory")
     private String name;
 
     @ApiModelProperty(example = "Bostanli, Izmir")

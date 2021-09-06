@@ -38,7 +38,6 @@ public class GlobalExceptionHandler {
     }
 
 
-
     private ErrorResponse prepareErrorResponse(HttpStatus httpStatus, String message) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setStatus(httpStatus.value());
