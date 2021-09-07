@@ -20,6 +20,10 @@ public class CourseService {
     private final CourseMapper courseMapper;
 
 
+    /**
+     * @param courseDTO takes Data Transfer Object as parameter
+     * @return saved Course object returned
+     */
     @Transactional
     public Optional<Course> saveCourse(CourseDTO courseDTO) {
         // received data can be checked in the method
@@ -30,8 +34,14 @@ public class CourseService {
             throw new CourseIsAlreadyExistException(ErrorMessageConstants.COURSE_EXISTS + courseDTO.getCourseCode());
         }
 
-        Course course = courseMapper.mapFromCourseDTOtoWallet(courseDTO);
+        Course course = courseMapper.mapFromCourseDTOtoCourse(courseDTO);
 
+        return Optional.of(courseRepository.save(course));
+    }
+
+    @Transactional
+    public Optional<Course> updateCourse(CourseDTO courseDTO) {
+        Course course = courseMapper.mapFromCourseDTOtoCourse(courseDTO);
         return Optional.of(courseRepository.save(course));
     }
 }

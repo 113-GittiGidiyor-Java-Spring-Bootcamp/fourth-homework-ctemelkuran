@@ -5,10 +5,7 @@ import dev.patika.patikahw04.entity.Course;
 import dev.patika.patikahw04.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -23,6 +20,10 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+    /**
+     * @param courseDTO
+     * @return
+     */
     // Database üzerinden gelen entityleri controller üzerinden sunmamalıyız.
     // İlgili entity içinde erişilmemesi gereken bilgileri tutuyor olabiliriz.
     // Bu nedenle DTO yapılarını kullanıyoruz
@@ -35,4 +36,9 @@ public class CourseController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @PutMapping("/update-course")
+    public ResponseEntity<Course> updateCourse(@RequestBody @Valid CourseDTO courseDTO) {
+        Optional<Course> courseOptional = courseService.updateCourse(courseDTO);
+        return new ResponseEntity<>(courseOptional.get(), HttpStatus.OK);
+    }
 }

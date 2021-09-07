@@ -12,7 +12,7 @@ public interface CourseMapper {
     protected CourseService courseService;*/
 
     // @Mapping(target = "createdDate", expression = "java(java.time.LocalDate.now())")
-    Course mapFromCourseDTOtoWallet(CourseDTO courseDTO);
-    CourseDTO mapFromCourseToWalletDTO(Course course);
+    Course mapFromCourseDTOtoCourse(CourseDTO courseDTO);
+    CourseDTO mapFromCourseToCourseDTO(Course course);
 
 }

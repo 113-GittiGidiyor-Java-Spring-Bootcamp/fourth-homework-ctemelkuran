@@ -22,4 +22,6 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
             "FROM Course c " +
             "WHERE c.courseCode = :courseCode")
     boolean selectExistsCourseCode(String courseCode);
+
+
 }
