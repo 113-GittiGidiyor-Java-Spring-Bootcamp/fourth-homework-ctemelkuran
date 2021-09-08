@@ -1,5 +1,6 @@
 package dev.patika.patikahw04.dto;
 
+import dev.patika.patikahw04.entity.Instructor;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +29,7 @@ public class CourseDTO {
     @NotNull(message = "Credit Score is mandatory")
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private int creditScore;
+
+    @ApiModelProperty(example = "Severus Snape")
+    private Instructor instructor;
 }
