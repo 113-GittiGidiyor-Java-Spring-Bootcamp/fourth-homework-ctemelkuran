@@ -35,6 +35,4 @@ public class StudentDTO {
     @ApiModelProperty(example = "Male or Female")
     private String gender;
 
-    private List<Course> studentCourses;
-
 }

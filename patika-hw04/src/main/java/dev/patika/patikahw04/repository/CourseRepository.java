@@ -24,5 +24,4 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             "WHERE c.courseCode = :courseCode")
     boolean selectExistsCourseCode(String courseCode);
 
-
 }

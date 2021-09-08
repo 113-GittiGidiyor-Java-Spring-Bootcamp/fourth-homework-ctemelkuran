@@ -9,6 +9,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,4 +33,6 @@ public class CourseDTO {
 
     @ApiModelProperty(example = "Severus Snape")
     private Instructor instructor;
+
+    private List<?> enrolledStudentIds;
 }
