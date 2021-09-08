@@ -21,6 +21,11 @@ public class StudentService {
     private final StudentMapper studentMapper;
 
 
+
+    /**
+     * @param studentDTO takes Data Transfer Object as parameter
+     * @return saved Student object returned
+     */
     @Transactional
     public Optional<Student> saveStudent(StudentDTO studentDTO) {
         // received data can be checked in the method

@@ -9,9 +9,13 @@ import dev.patika.patikahw04.repository.CourseRepository;
 import dev.patika.patikahw04.repository.StudentRepository;
 import dev.patika.patikahw04.util.ErrorMessageConstants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +48,7 @@ public class CourseService {
         return Optional.of(courseRepository.save(course));
     }
 
+
     /** Used to update
      * Mapper is called to convert DTO to entity object
      *
@@ -56,6 +61,11 @@ public class CourseService {
         return Optional.of(courseRepository.save(course));
     }
 
+    /** Find required entity by Id
+     *
+     * @param courseId
+     * @return found entity
+     */
     public Course findCourseById(long courseId) {
         Course foundCourse = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
@@ -63,4 +73,11 @@ public class CourseService {
     }
 
 
+    public List<Course> findAll() {
+        List<Course> courseList = new ArrayList<>();
+        Iterable<Course> courseIterable = courseRepository.findAll();
+        courseIterable.iterator().forEachRemaining(courseList::add);
+        return courseList;
+
+    }
 }

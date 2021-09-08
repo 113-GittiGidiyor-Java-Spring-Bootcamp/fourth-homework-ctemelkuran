@@ -10,7 +10,7 @@
     </parent>
     <groupId>dev.patika</groupId>
     <artifactId>patika-hw04</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>patika-hw04</name>
     <description>patika-hw04</description>
     <properties>

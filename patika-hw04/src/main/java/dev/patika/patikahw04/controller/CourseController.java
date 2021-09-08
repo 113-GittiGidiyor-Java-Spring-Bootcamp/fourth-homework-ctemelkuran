@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,7 +29,7 @@ public class CourseController {
     // Database üzerinden gelen entityleri controller üzerinden sunmamalıyız.
     // İlgili entity içinde erişilmemesi gereken bilgileri tutuyor olabiliriz.
     // Bu nedenle DTO yapılarını kullanıyoruz
-    @PostMapping("/save-course")
+    @PostMapping("/courses")
     public ResponseEntity<Course> saveCourse(@RequestBody @Valid CourseDTO courseDTO){
         Optional<Course> resultOptional = courseService.saveCourse(courseDTO);
         if(resultOptional.isPresent()){
@@ -36,6 +37,11 @@ public class CourseController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+    @GetMapping("/courses")
+    public ResponseEntity<List<Course>> findAll(){
+        return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
+    }
+
 
     @PutMapping("/update-course")
     public ResponseEntity<Course> updateCourse(@RequestBody @Valid CourseDTO courseDTO) {

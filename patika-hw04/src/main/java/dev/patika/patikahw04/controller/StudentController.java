@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/api")
 public class StudentController {
 
     private final StudentService studentService;
@@ -26,7 +26,12 @@ public class StudentController {
     // Database üzerinden gelen entityleri controller üzerinden sunmamalıyız.
     // İlgili entity içinde erişilmemesi gereken bilgileri tutuyor olabiliriz.
     // Bu nedenle DTO yapılarını kullanıyoruz
-    @PostMapping("/save-student")
+    /** Method to save the entity with given DTO.
+     *
+     * @param studentDTO
+     * @return ResponseEntity<>
+     */
+    @PostMapping("/student")
     public ResponseEntity<Student> saveStudent(@RequestBody @Valid StudentDTO studentDTO){
         Optional<Student> resultOptional = studentService.saveStudent(studentDTO);
         if(resultOptional.isPresent()){

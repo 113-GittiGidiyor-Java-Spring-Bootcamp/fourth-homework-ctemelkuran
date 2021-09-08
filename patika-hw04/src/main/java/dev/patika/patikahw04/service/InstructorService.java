@@ -20,7 +20,10 @@ public class InstructorService {
     private final InstructorMapper instructorMapper;
 
 
-
+    /**
+     * @param instructorDTO takes Data Transfer Object as parameter
+     * @return saved Instructor object returned
+     */
     @Transactional
     public Optional<Instructor> saveInstructor(InstructorDTO instructorDTO) {
         // check the phone number
