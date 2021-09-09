@@ -31,8 +31,11 @@ public class CourseDTO {
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private int creditScore;
 
-    @ApiModelProperty(example = "Severus Snape")
-    private Instructor instructor;
+    @ApiModelProperty(example = "1")
+    @NotNull(message = "An instructor is mandatory")
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
+    private Instructor instructorId;
 
-    private List<?> enrolledStudentIds;
+    @ApiModelProperty(example = "[1, 2, 3, 4]")
+    private List<Long> enrolledStudentIds;
 }

@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 
 public interface InstructorMapper {
 
-    Instructor mapFromInstructorDTOtoWallet(InstructorDTO instructorDTO);
-    InstructorDTO mapFromInstructorToWalletDTO(Instructor instructor);
+    Instructor mapFromInstructorDTOtoInstructor(InstructorDTO instructorDTO);
+    InstructorDTO mapFromInstructorToInstructorDTO(Instructor instructor);
 
 }

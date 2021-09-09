@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
-    Student mapFromStudentDTOtoWallet(StudentDTO studentDTO);
-    StudentDTO mapFromStudentToWalletDTO(Student student);
+    Student mapFromStudentDTOtoStudent(StudentDTO studentDTO);
+    StudentDTO mapFromStudentToStudentDTO(Student student);
 }

@@ -4,6 +4,7 @@ import dev.patika.patikahw04.dto.CourseDTO;
 import dev.patika.patikahw04.entity.Course;
 import dev.patika.patikahw04.entity.Student;
 import dev.patika.patikahw04.exceptions.CourseIsAlreadyExistException;
+import dev.patika.patikahw04.exceptions.StudentNumberForOneCourseExceededException;
 import dev.patika.patikahw04.mappers.CourseMapper;
 import dev.patika.patikahw04.repository.CourseRepository;
 import dev.patika.patikahw04.repository.StudentRepository;
@@ -27,6 +28,17 @@ public class CourseService {
     private final StudentRepository studentRepository;
     private final CourseMapper courseMapper;
 
+    /** Method to show all entities
+     *
+     * @return all entities found as a List.
+     */
+    public List<Course> findAll() {
+        List<Course> courseList = new ArrayList<>();
+        Iterable<Course> courseIterable = courseRepository.findAll();
+        courseIterable.iterator().forEachRemaining(courseList::add);
+        return courseList;
+
+    }
 
     /**
      * @param courseDTO takes Data Transfer Object as parameter
@@ -37,7 +49,6 @@ public class CourseService {
         // received data can be checked in the method
         // check if the course with the given courseCode exists
         boolean isCourseCodeExists = courseRepository.selectExistsCourseCode(courseDTO.getCourseCode());
-
 
         if (isCourseCodeExists) {
             throw new CourseIsAlreadyExistException(ErrorMessageConstants.COURSE_EXISTS + courseDTO.getCourseCode());
@@ -56,7 +67,14 @@ public class CourseService {
      * @return Optional Course
      */
     @Transactional
-    public Optional<Course> updateCourse(CourseDTO courseDTO) {
+    public Optional<Course> updateCourse(CourseDTO courseDTO, long courseId) {
+        courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        if (courseDTO.getEnrolledStudentIds().size() > 20){
+            throw new StudentNumberForOneCourseExceededException("Maximum 20 students can enroll a course.");
+        }
+
         Course course = courseMapper.mapFromCourseDTOtoCourse(courseDTO);
         return Optional.of(courseRepository.save(course));
     }
@@ -73,11 +91,19 @@ public class CourseService {
     }
 
 
-    public List<Course> findAll() {
-        List<Course> courseList = new ArrayList<>();
-        Iterable<Course> courseIterable = courseRepository.findAll();
-        courseIterable.iterator().forEachRemaining(courseList::add);
-        return courseList;
+    /**
+     * Deletes the object with given id
+     *
+     * @param courseId
+     * @return
+     */
+    @Transactional
+    public String deleteById(long courseId) {
 
+        Course foundCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        courseRepository.delete(foundCourse);
+        return "Course deleted with id: " + courseId;
     }
 }

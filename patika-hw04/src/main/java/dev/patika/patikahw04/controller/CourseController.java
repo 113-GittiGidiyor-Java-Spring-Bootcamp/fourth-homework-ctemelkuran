@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/course")
+@RequestMapping("/api/courses")
 public class CourseController {
 
     private final CourseService courseService;
@@ -22,14 +22,11 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    /**
-     * @param courseDTO
-     * @return
-     */
+
     // Database üzerinden gelen entityleri controller üzerinden sunmamalıyız.
     // İlgili entity içinde erişilmemesi gereken bilgileri tutuyor olabiliriz.
     // Bu nedenle DTO yapılarını kullanıyoruz
-    @PostMapping("/courses")
+    @PostMapping
     public ResponseEntity<Course> saveCourse(@RequestBody @Valid CourseDTO courseDTO){
         Optional<Course> resultOptional = courseService.saveCourse(courseDTO);
         if(resultOptional.isPresent()){
@@ -37,15 +34,28 @@ public class CourseController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    @GetMapping("/courses")
+    @GetMapping
     public ResponseEntity<List<Course>> findAll(){
         return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
     }
 
 
-    @PutMapping("/update-course")
-    public ResponseEntity<Course> updateCourse(@RequestBody @Valid CourseDTO courseDTO) {
-        Optional<Course> courseOptional = courseService.updateCourse(courseDTO);
+    @PutMapping("/{id}")
+    public ResponseEntity<Course> updateCourse(@PathVariable long id, @RequestBody @Valid CourseDTO courseDTO) {
+        Optional<Course> courseOptional = courseService.updateCourse(courseDTO, id);
         return new ResponseEntity<>(courseOptional.get(), HttpStatus.OK);
     }
+
+    @GetMapping("/{courseId}")
+    public ResponseEntity<Course> findCourseById(@PathVariable long courseId) {
+        Course foundCourse = courseService.findCourseById(courseId);
+        return new ResponseEntity<>(foundCourse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<?> deleteById(@PathVariable long courseId) {
+        String result = courseService.deleteById(courseId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }
