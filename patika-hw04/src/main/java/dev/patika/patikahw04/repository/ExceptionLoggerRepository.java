@@ -9,5 +9,4 @@ import java.util.List;
 
 public interface ExceptionLoggerRepository extends JpaRepository<ExceptionLogger, Long> {
     List<ExceptionLogger> findExceptionLoggersByExceptionType(String exceptionType);
-    List<ExceptionLogger> findAllByExceptionThrownDate(LocalDate exceptionDate);
 }

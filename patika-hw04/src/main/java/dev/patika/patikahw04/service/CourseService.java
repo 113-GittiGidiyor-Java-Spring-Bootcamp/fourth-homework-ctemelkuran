@@ -10,6 +10,7 @@ import dev.patika.patikahw04.repository.CourseRepository;
 import dev.patika.patikahw04.repository.StudentRepository;
 import dev.patika.patikahw04.util.ErrorMessageConstants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
-    private final CourseMapper courseMapper;
+    @Autowired
+    private CourseMapper courseMapper;
 
     /** Method to show all entities
      *

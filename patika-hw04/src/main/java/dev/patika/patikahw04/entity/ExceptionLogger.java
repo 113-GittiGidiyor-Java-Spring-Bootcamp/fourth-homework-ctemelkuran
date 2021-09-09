@@ -15,7 +15,6 @@ public class ExceptionLogger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String exceptionType;
     private LocalDate exceptionThrownDate;
     private String exceptionMessage;

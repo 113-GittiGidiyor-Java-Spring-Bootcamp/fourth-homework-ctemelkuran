@@ -3,6 +3,7 @@ package dev.patika.patikahw04.controller;
 import dev.patika.patikahw04.dto.InstructorDTO;
 import dev.patika.patikahw04.entity.Instructor;
 import dev.patika.patikahw04.service.InstructorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/instructors")
+@RequiredArgsConstructor
 public class InstructorController {
 
     private final InstructorService instructorService;
-
-    public InstructorController(InstructorService instructorService) {
-        this.instructorService = instructorService;
-    }
 
 
     @PostMapping

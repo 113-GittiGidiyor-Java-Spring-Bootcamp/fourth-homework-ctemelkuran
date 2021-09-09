@@ -1,10 +1,9 @@
 package dev.patika.patikahw04.controller;
 
 import dev.patika.patikahw04.dto.StudentDTO;
-import dev.patika.patikahw04.dto.StudentDTO;
-import dev.patika.patikahw04.entity.Student;
 import dev.patika.patikahw04.entity.Student;
 import dev.patika.patikahw04.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +14,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     // Database üzerinden gelen entityleri controller üzerinden sunmamalıyız.
     // İlgili entity içinde erişilmemesi gereken bilgileri tutuyor olabiliriz.
