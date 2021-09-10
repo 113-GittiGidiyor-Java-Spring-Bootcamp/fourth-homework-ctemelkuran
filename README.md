@@ -1,33 +1,42 @@
 ## School Management Project - 4th Homework 
 ## Summary
 
-A Spring Boot Application with CRUD Operations on following entities:
+A RESTful Spring Boot Application with CRUD Operations on following entities:
 * Courses
 * Students
 * Instructors
+  * Permanent Instructor
+  * Visiting Researcher
+
 
 ## End Points
+
+Main application URL: `http://localhost:8080`
 
 ### Courses
 * Save a New Course : `POST /api/courses`
 * Show All Courses: `GET /api/courses`
-* Find by Id: `GET /api/courses/{id}`
+* Find by ID: `GET /api/courses/{id}`
 * Update Course : `PUT /api/courses/{id}`
 * Delete Course : `DELETE /api/courses/{id}`
 
 ### Students
 * Save a New Student : `POST /api/students`
 * Show All Students: `GET /api/students`
-* Find by Id: `GET /api/students/{id}`
+* Find by ID: `GET /api/students/{id}`
 * Update Student : `PUT /api/students/{id}`
 * Delete Student : `DELETE /api/students/{id}`
 
 ### Instructors
 * Save a New Instructor : `POST /api/instructors`
 * Show All Instructors: `GET /api/instructors`
-* Find by Id: `GET /api/instructors/{id}`
+* Find by ID: `GET /api/instructors/{id}`
 * Update Instructor : `PUT /api/instructors/{id}`
 * Delete Instructor : `DELETE /api/instructors/{id}`
+
+
+### Exception Logs
+* Show Exception Logs : `GET /api/exception-logs`
 
 
 #### Homework 4 Information
